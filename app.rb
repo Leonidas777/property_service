@@ -10,11 +10,19 @@ before do
 end
 
 get '/stats' do
-  @properties = Property.first(100)
-
-  # binding.pry
+  @properties = Property.where(
+    property_type: params[:property_type],
+    offer_type: params[:marketing_type]
+  )
 
   @properties.map do |property|
-    property.slice(:offer_type, :property_type, :street, :lng, :lat, :construction_year, :price)
+    property.slice(
+      :house_number,
+      :street,
+      :city,
+      :zip_code,
+      :lat, :lng,
+      :price
+    )
   end.to_json
 end
