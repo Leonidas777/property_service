@@ -13,6 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_01_18_172544) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "btree_gist"
+  enable_extension "cube"
+  enable_extension "earthdistance"
   enable_extension "plpgsql"
 
   create_table "properties", id: :serial, force: :cascade do |t|
@@ -28,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_01_18_172544) do
     t.decimal "number_of_rooms", precision: 15, scale: 2
     t.string "currency"
     t.decimal "price", precision: 15, scale: 2
+    t.index "ll_to_earth((lat)::double precision, (lng)::double precision)", name: "properties_lat_lng", using: :gist
+    t.index ["property_type", "offer_type"], name: "properties_property_offer_types"
   end
 
 end
