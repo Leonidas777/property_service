@@ -1,6 +1,7 @@
 require 'rack/test'
 require 'rspec'
 require 'factory_bot'
+require 'db_cleaner'
 
 ENV['RACK_ENV'] = 'test'
 
@@ -18,7 +19,3 @@ end
 
 FactoryBot.definition_file_paths = %w{./spec/factories}
 FactoryBot.find_definitions
-
-# FactoryBot::SyntaxRunner.class_eval do
-#   include ActionDispatch::TestProcess
-# end
