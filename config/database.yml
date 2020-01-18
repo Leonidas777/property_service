@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: property
+  username: property
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['DATABASE_URL'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
