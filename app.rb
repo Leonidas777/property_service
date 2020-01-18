@@ -22,7 +22,7 @@ get '/stats' do
       .where('earth_distance(ll_to_earth(lat, lng), ll_to_earth(:current_lat, :current_lng)) < :radius',
         current_lat: current_lat,
         current_lng: current_lng,
-        radius: Property.RADIUS_FOR_SEARCH
+        radius: Property::RADIUS_FOR_SEARCH
       )
 
   if @properties.count == 0
