@@ -15,6 +15,8 @@ class Property < ActiveRecord::Base
 
   OFFER_TYPES = %w[sell rent].freeze
 
+  RADIUS_FOR_SEARCH = 5000.0.freeze
+
   validates :zip_code, :city, presence: true
   validates :property_type, inclusion: { in: PROPERTY_TYPES }
   validates :offer_type, inclusion: { in: OFFER_TYPES }

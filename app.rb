@@ -6,8 +6,6 @@ current_dir = Dir.pwd
 Dir["#{current_dir}/models/*.rb",
     "#{current_dir}/helpers/*.rb"].each { |file| require file }
 
-RADIUS = 5000.0.freeze
-
 before do
   content_type 'application/json'
 end
@@ -24,7 +22,7 @@ get '/stats' do
       .where('earth_distance(ll_to_earth(lat, lng), ll_to_earth(:current_lat, :current_lng)) < :radius',
         current_lat: current_lat,
         current_lng: current_lng,
-        radius: RADIUS
+        radius: Property.RADIUS_FOR_SEARCH
       )
 
   if @properties.count == 0
