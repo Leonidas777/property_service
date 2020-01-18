@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'sinatra/activerecord'
-require 'pry'
 
 current_dir = Dir.pwd
 Dir["#{current_dir}/models/*.rb",
