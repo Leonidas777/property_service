@@ -3,13 +3,16 @@ require 'sinatra/activerecord'
 require 'pry'
 
 current_dir = Dir.pwd
-Dir["#{current_dir}/models/*.rb"].each { |file| require file }
+Dir["#{current_dir}/models/*.rb",
+    "#{current_dir}/helpers/*.rb"].each { |file| require file }
 
 RADIUS = 5000.0.freeze
 
 before do
   content_type 'application/json'
 end
+
+before { check_params }
 
 get '/stats' do
   @properties =
@@ -24,6 +27,11 @@ get '/stats' do
         radius: RADIUS
       )
 
+  if @properties.count == 0
+    status 404
+    return { message: 'No data for given location' }.to_json
+  end
+
   @properties.map do |property|
     property.slice(
       :house_number,
@@ -34,12 +42,4 @@ get '/stats' do
       :price
     )
   end.to_json
-end
-
-def current_lat
-  params[:lat].to_f
-end
-
-def current_lng
-  params[:lng].to_f
 end
