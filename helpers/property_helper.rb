@@ -26,6 +26,14 @@ module PropertyHelper
   def current_lng
     params[:lng].to_f
   end
+
+  def offset_number_for(pagination)
+    page = params[:page].to_i.abs
+
+    return 0 if page <= 1
+
+    (page - 1) * pagination
+  end
 end
 
 helpers PropertyHelper

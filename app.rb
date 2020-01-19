@@ -5,6 +5,8 @@ current_dir = Dir.pwd
 Dir["#{current_dir}/models/*.rb",
     "#{current_dir}/helpers/*.rb"].each { |file| require file }
 
+PAGINATION = 1_000.freeze
+
 before do
   content_type 'application/json'
 end
@@ -23,6 +25,8 @@ get '/stats' do
         current_lng: current_lng,
         radius: Property::RADIUS_FOR_SEARCH
       )
+      .offset(offset_number_for(PAGINATION))
+      .limit(PAGINATION)
 
   if @properties.count == 0
     status 404

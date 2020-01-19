@@ -65,3 +65,7 @@ If some of the input parameters are not valid(for example, `property_type=blabla
 { "message": "Params invalid", "params": ["property_type"] }
 ```
 with the status code `422`
+
+To iterate over all the properties found there should be provided the parameter `page`.
+If it's not given, the first 1,000 properties will be loaded.
+E.g. you have to pass the `page=2` parameter to get the second thousand properties(if found at all).
