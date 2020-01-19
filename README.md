@@ -1,5 +1,5 @@
 # Property Service
-The service that, given latitude and longitude of an object, its type and marketing type, returns a list of similar objects with their prices within a `5 kilometer` radius
+The service that, given latitude and longitude of an object, its type and marketing type, returns a list of similar objects with their prices within a `5 kilometer` radius.
 
 ### The use scenario
 - Alice, the real estate agent, is asked to estimate the sell price of an apartment that is located in Marienburger Straße 31 10405 Prenzlauer Berg, Berlin.
@@ -59,7 +59,7 @@ If there is no property found:
 ```
 with the status code `404`
 
-If some of the input parameters is not valid(for example, `property_type=blabla`):
+If some of the input parameters are not valid(for example, `property_type=blabla`):
 
 ```
 { "message": "Params invalid", "params": ["property_type"] }
